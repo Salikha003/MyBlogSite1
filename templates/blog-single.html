@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <!--/ Intro Skew Star /-->
+  <div class="intro intro-single route bg-image" style="background-image: url({% static 'img/overlay-bg.png' %})">
+    <div class="overlay-mf"></div>
+    <div class="intro-content display-table">
+      <div class="table-cell">
+        <div class="container">
+          <h2 class="intro-title mb-4">Blog Details</h2>
+          <ol class="breadcrumb d-flex justify-content-center">
+            <li class="breadcrumb-item">
+              <a href="/#">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a href="#">Library</a>
+            </li>
+            <li class="breadcrumb-item active">Data</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/ Intro Skew End /-->
+
+  <!--/ Section Blog-Single Star /-->
+  <section class="blog-wrapper sect-pt4" id="blog">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="post-box">
+            <div class="post-thumb">
+              <img src="{{blogpost.photo.url}}" class="img-fluid" alt="" width="800" height="300">
+            </div>
+            <div class="post-meta">
+              <h1 class="article-title">{{blogpost.content}}</h1>
+              <ul>
+                <li>
+                  <span class="ion-ios-person"></span>
+                  <a href="#">{{blogpost.user_fullname}}</a>
+                </li>
+                <li>
+                  <span class="ion-pricetag"></span>
+                  <a href="#">{{blogpost.name}}</a>
+                </li>
+                <li>
+                  <span class="ion-chatbox"></span>
+                  <a href="#">{{blogpost.comments.count}} Comments</a>
+                </li>
+              </ul>
+            </div>
+            <div class="article-content">
+              <p>
+                {{ blogpost.about }}
+              </p>
+              {% if blogpost.note is not None %}
+                <p>{{ blogpost.note }}</p>
+                <blockquote class="blockquote">
+                  <p class="mb-0">{{ blogpost.note }}</p>
+                </blockquote>
+              {% endif %}
+            </div>
+          </div>
+          <div class="box-comments">
+            <div class="title-box-2">
+              <h4 class="title-comments title-left">Comment{{comment|pluralize}} ({{comment.count}})</h4>
+            </div>
+            {% for i in comment %}
+              <ul class="list-comments">
+                <li>
+                  <div class="comment-avatar">
+                    <img src="{{i.image.url}}" alt="">
+                  </div>
+                  <div class="comment-details">
+                    <h4 class="comment-author">{{i.name}}</h4>
+                    <span>{{i.created_on}}</span>
+                    <p>
+                      {{i.comment}}
+                    </p>
+                  </div>
+                </li>
+              {% endfor %}
+              <div class="form-comments">
+                <div class="title-box-2">
+                  <h3 class="title-left">
+                    Leave a Reply
+                  </h3>
+                </div>
+                <form class="form-mf" method="POST">
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                    <div class="row">
+                    </div> 
+                    <div class="col-md-12">
+                      <button type="submit" class="button button-a button-big button-rouded">Send Message</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="widget-sidebar sidebar-search">
+                <h5 class="sidebar-title">Search</h5>
+                <div class="sidebar-content">
+                  <form>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for...">
+                      <span class="input-group-btn">
+                        <button class="btn btn-secondary btn-search" type="button">
+                          <span class="ion-android-search"></span>
+                        </button>
+                      </span>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+          <div class="widget-sidebar">
+            <h5 class="sidebar-title">Recent Post</h5>
+            {% for i in recent_post %}
+              <div class="sidebar-content">
+                <ul class="list-sidebar">
+                  <li>
+                    <a href="{% url "blog_page" i.pk %}">{{i.content}}</a>
+                  </li>
+                </ul>
+              </div>
+            {% endfor %}
+          </div>
+          <div class="widget-sidebar">
+            <h5 class="sidebar-title">Archives</h5>
+            {% for i in archives %}
+              <div class="sidebar-content">
+                <ul class="list-sidebar">
+                  <li>
+                    <a href="{% url "blog_page" i.pk %}">{{i.content}}</a>
+                  </li>
+                </ul>
+              </div>
+            {% endfor %}
+            </div>         
+          <div class="widget-sidebar widget-tags">
+            <h5 class="sidebar-title">Tags</h5>
+            {% for i in tags %}
+              <div class="sidebar-content">
+                <ul>
+                  <li>
+                    <a href="{% url "blog_page" i.pk %}">{{i.name}}</a>
+                  </li>
+                </ul>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Section Blog-Single End /-->
+
+{% endblock content %}

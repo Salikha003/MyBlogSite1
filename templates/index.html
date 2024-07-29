@@ -1,0 +1,368 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+  <!--/ Intro Skew Star /-->
+  <div id="home" class="intro route bg-image" style="background-image: url({% static "img/homepage1.jpg" %})">
+    <div class="overlay-itro"></div>
+    <div class="intro-content display-table">
+      <div class="table-cell">
+        <div class="container">
+          <!--<p class="display-6 color-d">Hello, world!</p>-->
+          <h1 class="intro-title mb-4">𝐒𝐨𝐥𝐢𝐡𝐚 𝐇𝐮𝐬𝐧𝐢𝐝𝐝𝐢𝐧𝐨𝐯𝐚</h1>
+          <p class="intro-subtitle"><span class="text-slider-items">Web Developer</span><strong class="text-slider"></strong></p>
+          <!-- <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="#about" role="button">Learn More</a></p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/ Intro Skew End /-->
+
+  <section id="about" class="about-mf sect-pt4 route">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="box-shadow-full">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-sm-6 col-md-5">
+                    <div class="about-img">
+                      <img src="{{about_me_page_object.photo.url}}" class="img-fluid rounded b-shadow-a" style="max-width: 300px; max-height: 200px;" alt="">
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-7">
+                    <div class="about-info">
+                      <p><span class="title-s">Name: </span> <span>{{about_me_page_object.name}}</span></p>
+                      <p><span class="title-s">Profile: </span> <span>{{about_me_page_object.profile}}</span></p>
+                      <p><span class="title-s">Email: </span> <span>{{about_me_page_object.email}}</span></p>
+                      <p><span class="title-s">Phone: </span> <span>{{about_me_page_object.phone}}</span></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="skill-mf">
+                  <p class="title-s">Skill</p>
+                  {% for i in about_me_page_object.Skill.all %}
+                    <span>{{i.name}}</span> <span class="pull-right">{{i.percent}}%</span>
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="width: {{i.percent}}%;" aria-valuenow="{{i.percent}}" aria-valuemin="0"
+                        aria-valuemax="100"></div>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="about-me pt-4 pt-md-0">
+                  <div class="title-box-2">
+                    <h5 class="title-left">
+                      About me
+                    </h5>
+                  </div>
+                  <p class="lead">
+                    {{about_me_page_object.content}}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--/ Section Services Star /-->
+  <section id="service" class="services-mf route">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="title-box text-center">
+            <h3 class="title-a">
+              Services
+            </h3>
+            <p class="subtitle-a">        
+              Our company services
+            </p>
+            <div class="line-mf"></div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        {% for i in services_page_objects %}
+          {% if forloop.counter0|divisibleby:3 %}
+            {% if not forloop.first %}
+              </div>
+            {% endif %}
+            <div class="row">
+          {% endif %}
+          <div class="col-md-4">
+            <div class="service-box">
+              <div class="service-ico">
+                <span class="ico-circle"><i class="{{i.icon}}"></i></span>
+              </div>
+              <div class="service-content">
+                <h2 class="s-title">{{i.name}}</h2>
+                <p class="s-description text-center">
+                  {{i.about}}
+                </p>
+              </div>
+            </div>
+          </div>
+          {% if forloop.last %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+  <!--/ Section Services End /-->
+
+  <div class="section-counter paralax-mf bg-image" style="background-image: url({% static "img/overlay.jpg" %})">
+    <div class="overlay-mf"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3 col-lg-3">
+          <div class="counter-box">
+            <div class="counter-ico">
+              <span class="ico-circle"><i class="ion-checkmark-round"></i></span>
+            </div>
+            <div class="counter-num">
+              <p class="counter">{{ statistics_objects.works_completed }}</p>
+              <span class="counter-text">WORKS COMPLETED</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3 col-lg-3">
+          <div class="counter-box pt-4 pt-md-0">
+            <div class="counter-ico">
+              <span class="ico-circle"><i class="ion-ios-calendar-outline"></i></span>
+            </div>
+            <div class="counter-num">
+              <p class="counter">{{ statistics_objects.years_of_experience }}</p>
+              <span class="counter-text">YEARS OF EXPERIENCE</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3 col-lg-3">
+          <div class="counter-box pt-4 pt-md-0">
+            <div class="counter-ico">
+              <span class="ico-circle"><i class="ion-ios-people"></i></span>
+            </div>
+            <div class="counter-num">
+              <p class="counter">{{ statistics_objects.total_clients }}</p>
+              <span class="counter-text">TOTAL CLIENTS</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3 col-lg-3">
+          <div class="counter-box pt-4 pt-md-0">
+            <div class="counter-ico">
+              <span class="ico-circle"><i class="ion-ribbon-a"></i></span>
+            </div>
+            <div class="counter-num">
+              <p class="counter">{{ statistics_objects.award_won}}</p>
+              <span class="counter-text">AWARD WON</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--/ Section Portfolio Star /-->
+  <section id="work" class="portfolio-mf sect-pt4 route">
+    <div class="container">
+      {% for i in portfolio_objects %}
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="title-box text-center">
+            <h3 class="title-a">
+              {{ i.name }}
+            </h3>
+            <p class="subtitle-a">
+              {{ i.about }}
+            </p>
+            <div class="line-mf"></div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+      <div class="row">
+        {% for i in portfolio_post_objects %}
+          <div class="col-md-4">
+            <div class="work-box">
+              <a href="{{ i.photo.url }}" data-lightbox="gallery-mf">
+                <div class="work-img">
+                  <img src="{{ i.photo.url }}" alt="" class="img-fluid">
+                </div>
+                <div class="work-content">
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <h2 class="w-title">{{ i.about }}</h2>
+                      <div class="w-more">
+                        <span class="w-ctegory">{{ i.name }}</span> / <span class="w-date">{{ i.data }}</span>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="w-like">
+                        <span class="ion-ios-plus-outline"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+  </section>
+  <!--/ Section Portfolio End /-->
+
+  <!--/ Section Testimonials Star /-->
+  <div class="testimonials paralax-mf bg-image" style="background-image: url({% static "img/overlay-bg.png" %})">
+    <div class="overlay-mf"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div id="testimonial-mf" class="owl-carousel owl-theme">
+            {% for team in team_page_objects %}
+              <div class="testimonial-box">
+                <div class="author-test">
+                  <img src="{{ team.photo.url }}" alt="" class="rounded-circle b-shadow-a" width="300" height="300">
+                  <span class="author">{{ team.name }}</span>
+                </div>
+                <div class="content-test">
+                  <p class="description lead">
+                    {{ team.about }}
+                  </p>
+                  <span class="comit"><i class="fa fa-quote-right"></i></span>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--/ Section Testimonials End /-->
+
+  <!--/ Section Blog Star /-->
+  <section id="blog" class="blog-mf sect-pt4 route">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="title-box text-center">
+            <h3 class="title-a">
+              Blog
+            </h3>
+            <p class="subtitle-a">
+              Best Programming Languages For Web Development
+            </p>
+            <div class="line-mf"></div>
+          </div>
+        </div>
+      </div>
+      {% for i in blog_page_objects %}
+      {% if forloop.counter0|divisibleby:3 %}
+            {% if not forloop.first %}
+              </div>
+            {% endif %}
+            <div class="row">
+          {% endif %}
+          <div class="col-md-4">
+            <div class="card card-blog">
+              <div class="card-img">
+                <a href="{% static "blog-single.html" %}"><img src="{{i.photo.url}}" alt="" class="img-fluid" width="400" height="200"></a>
+              </div>
+              <div class="card-body">
+                <div class="card-category-box">
+                  <div class="card-category">
+                    <h6 class="category">{{i.name}}</h6>
+                  </div>
+                </div>
+                <h3 class="card-title"><a href="{% url "blog_page" pk=i.pk %}">{{i.content | slice:"50"}}</a></h3>
+                <p class="card-description">
+                  {{i.about | slice:"195"}}
+                </p>
+              </div>
+              <div class="card-footer">
+                <div class="post-author">
+                  <a href="#">
+                    <img src="{{i.user_photo.url}}" alt="" class="avatar rounded-circle">
+                    <span class="author">{{i.user_fullname}}</span>
+                  </a>
+                </div>
+                <div class="post-date">
+                  <span class="ion-ios-clock-outline"></span> {{i.date}}
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+  <!--/ Section Blog End /-->
+
+  <!--/ Section Contact-Footer Star /-->
+  <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url({% static "img/overlay-bg.png" %})">
+    <div class="overlay-mf"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="contact-mf">
+            <div id="contact" class="box-shadow-full">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="title-box-2">
+                    <h5 class="title-left">
+                      Send Message Us
+                    </h5>
+                  </div>
+                  <div>
+                      <form method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="row">
+                        <div class="col-md-12">
+                          <button type="submit" class="button button-a button-big button-rouded">Send Message</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="title-box-2 pt-4 pt-md-0">
+                    <h5 class="title-left">
+                      Get in Touch
+                    </h5>
+                  </div>
+                  <div class="more-info">
+                    <p class="lead">
+                      Python Backend Developer, With 2+ years' experience in Python backend development, I have built and integrated secure, reliable web applications using the Django web framework and REST API structures.
+                       I have designed and implemented a CI/CD system, optimized code for performance and reliability, and created microservices databases for scalability. 
+                       My bug reduction strategies have improved system uptime by 30%, and I am adept at reducing development and application load times.
+                       I have experience using customer relationship management (CRM) and project management software.
+                        My technical aptitude allows me to learn new software fast. I am quick to adapt to new technologies as required.
+                    </p>
+                    <ul class="list-ico">
+                      <li><span class="ion-ios-location"></span> UZBEKISTAN, SAMARKAND</li>
+                      <li><span class="ion-ios-telephone"></span> +998 (88) 123-4567</li>
+                      <li><span class="ion-email"></span> solihahusniddinova27@gmail.com</li>
+                    </ul>
+                  </div>
+                  <div class="socials">
+                    <ul>
+                      <li><a href="https://t.me/Sal1kha_003/"><span class="ico-circle"><i class="ion-social-facebook"></i></span></a></li>
+                      <li><a href="https://www.instagram.com/_sal1kha_003/"><span class="ico-circle"><i class="ion-social-instagram"></i></span></a></li>
+                      <li><a href="https://www.pinterest.com/Salikha_003"><span class="ico-circle"><i class="ion-social-pinterest"></i></span></a></li>
+                      <li><a href="https://github.com/Salikha003"><span class="ico-circle"><i class="ion-social-github"></i></span></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock content %}
+
+
+
+
+    
