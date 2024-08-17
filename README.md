@@ -11,9 +11,10 @@ This is a blog site built using Python and Django. It allows users to manage and
 ## Installation
 1. **Clone the Repository**:
    ```sh
-   git clone <https://github.com/Salikha003/MyBlogSite1.git>
+   git clone https://github.com/Salikha003/MyBlogSite1.git
+   ```
 Create a Virtual Environment:
-
+```sh
 python -m venv venv
 source venv/bin/activate  # Unix/Linux
 venv\Scripts\activate  # Windows
