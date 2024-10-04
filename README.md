@@ -1,5 +1,15 @@
 # Blog Site
 
+
+<video width="640" height="480" controls>
+  <source src="https://github.com/Salikha003/MyBlogSite1/raw/main/blogsite_demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+
+
+
+
 ## Description
 This is a blog site built using Python and Django. It allows users to manage and publish their blog posts online.
 
