@@ -2,7 +2,7 @@
 
 ## Live Demo
 
-[Demo Video](https://github.com/Salikha003/MyBlogSite1/raw/master/blogsite_demo.mp4)
+[Live Demo](https://github.com/Salikha003/MyBlogSite1/raw/master/blogsite_demo.mp4)
 
 
 
